@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-flashcard",
+  "metadata": {
+    "description": "Flashcard-generation skills for Claude Code — turn text, URLs, PDFs, or images into study decks."
+  },
+  "owner": {
+    "name": "yusupovamirxon"
+  },
+  "plugins": [
+    {
+      "name": "claude-flashcard",
+      "description": "Generate flashcards from any input resource (text, URL, PDF, image). Includes a domain router and language-learning flashcard skill.",
+      "version": "0.1.0",
+      "source": "./",
+      "category": "productivity",
+      "tags": ["flashcards", "study", "anki", "quizlet", "language-learning", "spaced-repetition"]
+    }
+  ]
+}
