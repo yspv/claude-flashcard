@@ -24,11 +24,12 @@ fire directly without this skill ever engaging.
 
 ## Step 1: Discover available domain skills
 
-Before doing anything else, list the contents of the repo's `skills/`
-directory to see which domain skills currently exist. Do this fresh on
-every invocation — never hardcode a list of domains or skill names in this
-file. The whole point of this router is that adding a new domain skill
-requires zero edits here.
+Before doing anything else, list the contents of the `skills/` directory —
+that is, this skill's own parent directory (the directory containing the
+`flashcard-router/` folder this `SKILL.md` lives in) — to see which domain
+skills currently exist. Do this fresh on every invocation — never hardcode
+a list of domains or skill names in this file. The whole point of this
+router is that adding a new domain skill requires zero edits here.
 
 Exclude from consideration:
 - `_shared/` — this is a reference directory, not a skill (it has no
@@ -37,6 +38,12 @@ Exclude from consideration:
 
 For each remaining directory, read its `SKILL.md` frontmatter
 `description` to understand what domain and trigger phrases it covers.
+
+If sibling skills cannot be enumerated for any reason (e.g. this skill is
+installed in a context that flattens or otherwise doesn't expose the
+repo's directory layout), do not fail or error out — skip discovery
+entirely and go straight to asking the user the disambiguation question in
+Step 2.
 
 ## Step 2: Match the request against discovered domains
 

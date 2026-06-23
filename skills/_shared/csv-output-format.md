@@ -41,6 +41,10 @@ id,type,topic,front,back,notes
 
 ## Example
 
+The `type` values below (`concept`, `application`, `dialogue`) are
+illustrative only — they are not a suggested default set. Each domain
+skill defines its own `type` enum, as described above.
+
 ```csv
 id,type,topic,front,back,notes
 1,concept,Example domain / topic,"What is the prompt side of a card?","The question or cue the learner sees first.",""

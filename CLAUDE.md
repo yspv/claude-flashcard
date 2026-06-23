@@ -5,7 +5,8 @@ resource (text, URL, PDF, image, etc.).
 
 ## Structure
 
-Each flashcard variant lives in its own skill directory:
+Each flashcard variant lives in its own skill directory, alongside the
+router and shared references:
 
 ```
 skills/
@@ -67,6 +68,8 @@ each other or maintain pairwise precedence rules.
 6. No router updates needed — `flashcard-router` discovers domain skills
    dynamically by reading the `skills/` directory, so a new skill is picked
    up automatically.
+7. Add your skill to the "Current skills" list above (under Domain
+   skills), so this file stays an accurate index.
 
 ## Output convention
 
