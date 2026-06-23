@@ -9,9 +9,9 @@ description: >
   "flashcards for [language]", "vocabulary cards", "make cards from this text",
   "help me memorize these words", "sentence mining", "grammar cards", or whenever
   the user shares a resource (word list, article, lesson, textbook page, image,
-  URL) and wants to learn or memorize it in a foreign language. Prefer this skill
-  over the general flashcard skill whenever a target language is mentioned or
-  implied.
+  URL) and wants to learn or memorize it in a foreign language. Trigger whenever
+  a target language is named or implied (e.g. Spanish, Japanese, German,
+  "my French class").
 ---
  
 # Language Flashcard Skill
@@ -292,45 +292,35 @@ Generate these only for words flagged as difficult, or when the user requests th
 ---
  
 ## Step 4: Apply quality rules (SuperMemo Twenty Rules)
- 
-Before outputting, check each card:
- 
-- [ ] **One fact only** — if a question has two parts, split it.
-- [ ] **Answer as short as possible** — trim every unnecessary word.
-- [ ] **Noun-based prompts** where possible — "tarde — meaning" not "What does tarde mean?"
-- [ ] **Difficulty matched to level** — desirable difficulty for intermediate/advanced; scaffolding and a high success rate for beginners (see Step 2.5). A card should be one the learner can *almost* always get with effort.
-- [ ] **No bare word → translation** unless the user explicitly asks.
+
+Before outputting, check each card against the shared baseline in
+`../_shared/quality-rules.md`, plus these language-specific rules:
+
+- [ ] **Difficulty matched to level** — desirable difficulty for
+  intermediate/advanced; scaffolding and a high success rate for beginners
+  (see Step 2.5).
 - [ ] **Context card present** for every new vocabulary item.
-- [ ] **Production card paired** with recognition for active vocabulary — skip the pair for recognition-only items or to control deck size at beginner level (see Step 3B).
-- [ ] **False friends flagged** — scan the target-language material for words that resemble native-language words with different meanings; generate a card for each one found (requires native language to be known).
-- [ ] **Disambiguation cue added** when two cards could be confused.
+- [ ] **Production card paired** with recognition for active vocabulary —
+  skip the pair for recognition-only items or to control deck size at
+  beginner level (see Step 3B).
+- [ ] **False friends flagged** — scan the target-language material for
+  words that resemble native-language words with different meanings;
+  generate a card for each one found (requires native language to be
+  known).
 ---
  
 ## Output format
- 
-**Output a CSV artifact — no plain numbered lists, no HTML, no React components.** Cards are study material the user will copy into their flashcard app (Anki, Quizlet, etc.).
- 
-Output the cards as a `.csv` file artifact with the following header row and columns:
- 
-```
-id,type,topic,front,back,notes
-```
- 
-Column definitions:
-- **id** — sequential integer starting at 1
-- **type** — one of: `vocab`, `production`, `grammar`, `collocation`, `false-friend`, `dialogue`, `culture`, `pronunciation`, `mnemonic`
-- **topic** — language and subject area (e.g. `Spanish / travel`, `Japanese / apologies`)
-- **front** — the question or prompt side of the card; use `[...]` for cloze gaps
-- **back** — the answer side of the card
-- **notes** — optional: register, word class, IPA, pattern label, cultural tag — empty string if none
-**CSV formatting rules:**
-- Comma-separated, UTF-8 encoded
-- Wrap any field containing commas, newlines, or double-quotes in double-quotes
-- Escape internal double-quotes by doubling them (`""`)
-- Multi-line answer content (e.g. dialogue alternatives) uses a **real newline** inside the quoted field — do NOT use the literal escape sequence `\n`
-- Do not add extra blank lines between rows
+
+See `../_shared/csv-output-format.md` for the full CSV schema, formatting
+rules, and summary footer format — every flashcard skill in this repo
+follows the same output contract.
+
+This skill's `type` column values:
+`vocab`, `production`, `grammar`, `collocation`, `false-friend`,
+`dialogue`, `culture`, `pronunciation`, `mnemonic`.
+
 **Example:**
- 
+
 ```csv
 id,type,topic,front,back,notes
 1,vocab,Spanish / travel,"El vuelo sale a las [...] de la mañana.","ocho","time expressions use 'las' + number"
@@ -339,12 +329,6 @@ id,type,topic,front,back,notes
 4,dialogue,Japanese / apologies,"Arriving late to a formal meeting in Japan — what do you say?","申し訳ございません。(Mōshiwake gozaimasen.) — deeply formal apology
 Less formal: すみません、遅れました。(Sumimasen, okuremashita.)",""
 ```
- 
-After the artifact, add a short **summary** in chat (plain text):
-- Total cards, breakdown by type
-- Any items skipped (and why — too listy, out of scope, etc.)
-- Any ⚠️ flags for unclear source material
-- Reminder to shuffle / interleave cards during review
 ---
  
 ## Edge cases
