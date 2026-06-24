@@ -110,3 +110,7 @@ rules.
    README) so the index stays accurate.
 
 See `CLAUDE.md` for the full repo conventions.
+
+## License
+
+[MIT](LICENSE)
