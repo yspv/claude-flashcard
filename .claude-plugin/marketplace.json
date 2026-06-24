@@ -5,7 +5,8 @@
     "description": "Flashcard-generation skills for Claude Code — turn text, URLs, PDFs, or images into study decks."
   },
   "owner": {
-    "name": "yusupovamirxon"
+    "name": "yspv",
+    "url": "https://github.com/yspv"
   },
   "plugins": [
     {
@@ -13,6 +14,7 @@
       "description": "Generate flashcards from any input resource (text, URL, PDF, image). Includes a domain router and language-learning flashcard skill.",
       "version": "0.1.0",
       "source": "./",
+      "repository": "https://github.com/yspv/claude-flashcard",
       "category": "productivity",
       "tags": ["flashcards", "study", "anki", "quizlet", "language-learning", "spaced-repetition"]
     }
