@@ -1,7 +1,7 @@
 {
   "name": "claude-flashcard",
   "description": "Generate flashcards from any input resource (text, URL, PDF, image). Includes a domain router and language-learning flashcard skill.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "repository": "https://github.com/yspv/claude-flashcard",
   "license": "MIT",
   "skills": "./skills"
