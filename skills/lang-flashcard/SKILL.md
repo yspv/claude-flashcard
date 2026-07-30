@@ -42,6 +42,19 @@ If all of these are already clear from the conversation, skip asking and proceed
  
 ---
  
+## Step 0.5: Load language-specific guidance
+
+As soon as the target language is known, check whether
+`references/languages/<language>.md` exists, where `<language>` is the
+lowercase English name of the target language (e.g. `english.md`). If
+it exists, read it fully **before Step 1** — it contains hunting
+instructions that shape what to extract from the material — and apply
+its guidance throughout Steps 1–4, including folding its quality
+checklist into Step 4. If no file exists for the language, skip this
+step and proceed as normal.
+
+---
+ 
 ## Step 1: Read and understand the resource
  
 Fully read and comprehend the material before generating any cards.
