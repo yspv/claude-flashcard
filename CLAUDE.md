@@ -15,6 +15,10 @@ skills/
   _shared/
     csv-output-format.md   # shared CSV schema, formatting rules, summary footer
     quality-rules.md       # shared domain-agnostic quality checklist
+  lang-flashcard/
+    SKILL.md
+    references/
+      languages/   # per-language guidance modules (english.md, ...)
   <skill-name>/
     SKILL.md       # required: frontmatter (name, description) + instructions
     references/     # optional: supporting docs loaded on demand
@@ -70,6 +74,22 @@ each other or maintain pairwise precedence rules.
    up automatically.
 7. Add your skill to the "Current skills" list above (under Domain
    skills), so this file stays an accurate index.
+
+## Adding a new language module to lang-flashcard
+
+Language-specific guidance for `lang-flashcard` lives in
+`skills/lang-flashcard/references/languages/<language>.md`, named by
+the lowercase English name of the target language (e.g. `english.md`).
+The skill checks for a matching module at invocation time (Step 0.5)
+and loads it only when the target language matches — so adding a new
+language module requires no SKILL.md, router, or CLAUDE.md changes.
+
+Keep the same shape as `english.md`: hunting instructions for what to
+find in source material, slanting rules for the existing card types
+(A–I), an L1 interference derivation section (instructions plus a few
+worked examples, never exhaustive per-L1 tables), and a short
+language-specific quality checklist. Language modules must not define
+new CSV `type` values.
 
 ## Output convention
 
